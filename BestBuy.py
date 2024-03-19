@@ -88,4 +88,15 @@ time.sleep(7)
 gestures.long_press(x=316, y=1203).move_to(x=343, y=398).release().perform()
 driver.implicitly_wait(5)
 gestures.long_press(x=316, y=1203).move_to(x=343, y=398).release().perform()
-driver.implicitly_wait(5
+driver.implicitly_wait(5)
+gestures.long_press(x=316, y=1203).move_to(x=343, y=398).release().perform()
+time.sleep(4)
+
+# Stop recording the screen and save the video and screenshot
+vide_rawdata = driver.stop_recording_screen()
+video_name = driver.current_activity + time.strftime("%Y_%m_%d_%H%M%S")
+filepath = os.path.join("S:/Appium/ " + video_name + ".mp4")
+with open(filepath, "wb") as vd:
+    vd.write(base64.b64decode(vide_rawdata))
+time.sleep(4)
+driver.save_screenshot("S:/Appium/ " + video_name + ".png")
